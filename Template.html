@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Euler Project Problem</title>
+</head>
+ 
+<body>
+Description of the Problem Here<br><br>
+
+<button onclick="showAnswerDiv()">Show Answer</button> <br><br>
+<div id="answerDiv" style="display:none">Invisible Text</div><br><br>
+ 
+<script>
+ 
+function produceAnswer() {
+return 'Body of function here';
+    }
+ 
+var answer = produceAnswer();
+var answerDiv = document.getElementById('answerDiv');
+answerDiv.innerHTML = answer;
+ 
+function showAnswerDiv() {
+answerDiv.style.display == 'block' ? (answerDiv.style.display = 'none', console.log('hiding')) : (answerDiv.style.display = 'block', console.log('showing'));
+}
+ 
+</script>
+</body>
+</html>

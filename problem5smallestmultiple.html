@@ -1,0 +1,31 @@
+
+<!DOCTYPE html><html><head><title>Project Euler 5</title></head>
+
+<body>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.<br><br>
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?<br><br>
+
+<button onclick="showAnswerDiv()">Activate Script</button> <br><br>
+<div id="answerDiv" style="display:none">Answer Div</div>
+
+<script>
+var answerDiv = document.getElementById('answerDiv');
+
+function produceAnswer() {
+	//i is the left hand, j is the right hand, two for loops and then a sort makes this O(n^2) + O(n log n)
+	products = [];
+	for (i=999;i>0;i--) {
+		for (j=999;j>0;j--) {  
+			var product = (i*j).toString();
+			if ( product === product.split('').reverse().join('')) {
+			products.push(product)}
+			}
+		}     
+	products.sort(function(a, b){return b - a});return products[0];
+}
+
+function showAnswerDiv() {answerDiv.innerHTML = produceAnswer();answerDiv.style.display = 'block';}
+
+</script>
+
+</body>
+</html> 

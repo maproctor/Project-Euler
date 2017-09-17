@@ -1,12 +1,33 @@
 
-<!DOCTYPE html><html><head><title>Page Title</title></head>
-<body>A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 * 99.<br><br>
-Find the largest palindrome made from the product of two 3-digit numbers.<br><br><button onclick="showAnswerDiv()">Activate Script</button> <br><br>
+<!DOCTYPE html><html><head><title>Project Euler 4</title></head>
+
+<body>A palindromic number reads the same both ways. 
+The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 * 99.<br><br>
+Find the largest palindrome made from the product of two 3-digit numbers.<br><br>
+<button onclick="showAnswerDiv()">Activate Script</button> <br><br>
 <div id="answerDiv" style="display:none">Answer Div</div>
-<script>var answerDiv = document.getElementById('answerDiv');
+
+<script>
+var answerDiv = document.getElementById('answerDiv');
+
+/* Your left hand is on a table of numbers 0 to 999, and your right hand is on a separate table of numbers 0 to 999. While the left hand is on 999, the right hand works on 999 and you check if the product is a palindrome, if so it is added to a list. Your right hand works the whole table down to 0, then the left hand moves to 998 and the process starts again. Eventually all palindromes are added to the list. Then the list is sorted in descending order. The first element is therefore the largest palindromic factor of all three digit numbers. */
+
 function produceAnswer() {
-     products = [];     for (i=999;i>0;i--) { for (j=999;j>0;j--) {  var product = (i*j).toString();  if ( product === product.split('').reverse().join(''))     {products.push(product)}      }     }     products.sort(function(a, b){return b - a});return products[0];}
+	//i is the left hand, j is the right hand, two for loops and then a sort makes this O(n^2) + O(n log n)
+	products = [];
+	for (i=999;i>0;i--) {
+		for (j=999;j>0;j--) {  
+			var product = (i*j).toString();
+			if ( product === product.split('').reverse().join('')) {
+			products.push(product)}
+			}
+		}     
+	products.sort(function(a, b){return b - a});return products[0];
+}
+
 function showAnswerDiv() {answerDiv.innerHTML = produceAnswer();answerDiv.style.display = 'block';}
+
 </script>
+
 </body>
 </html> 

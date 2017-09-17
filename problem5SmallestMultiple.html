@@ -11,16 +11,17 @@ What is the smallest positive number that is evenly divisible by all of the numb
 var answerDiv = document.getElementById('answerDiv');
 
 function produceAnswer() {
-	//i is the left hand, j is the right hand, two for loops and then a sort makes this O(n^2) + O(n log n)
-	products = [];
-	for (i=999;i>0;i--) {
-		for (j=999;j>0;j--) {  
-			var product = (i*j).toString();
-			if ( product === product.split('').reverse().join('')) {
-			products.push(product)}
+	for (prospectiveNumber = 20; /* run until solved*/ ; prospectiveNumber++) {
+		for (i = 20; i>1; i--) {
+			if (prospectiveNumber % i===0) {
+				if (i === 1) {return prospectiveNumber}
+				else continue;
 			}
-		}     
-	products.sort(function(a, b){return b - a});return products[0];
+			else break;
+		}
+	}
+
+
 }
 
 function showAnswerDiv() {answerDiv.innerHTML = produceAnswer();answerDiv.style.display = 'block';}

@@ -11,11 +11,45 @@ What is the smallest positive number that is evenly divisible by all of the numb
 var answerDiv = document.getElementById('answerDiv');
 
 
+function subFactors (numberToFactor) {
+    var subFactors = [];
+    for (var j=2;j<=numberToFactor;) {
+        if (numberToFactor%j==0) {
+            subFactors.push(j);
+            numberToFactor/=j;
+            continue} 
+        if (numberToFactor == j) {subFactors.push(j); break}
+        if (numberToFactor>j) {j++}
+    }
+    if (subFactors.length ==0) {return numberToFactor}
+    else return subFactors;
+}
 
 function produceAnswer() {
-	//store a function that checks for factors, if there are some add them to a list, if not add that to a list
+	var t0 = performance.now();
+    var factors = [];
+
+    for (i=1;i<21;i++) {
+        subs = Array.from(subFactors(i));  //make a list of subfactors
+        copyOfFactors = factors.slice();   //make a copy of the known factors
+        while (copyOfFactors.indexOf(subs[0])>-1) { //while a number is in both lists
+                copyOfFactors.splice(copyOfFactors.indexOf( subs[0] ), 1 ); //snip from copy of factors
+                subs.splice(subs.indexOf( subs[0] ), 1 );  //snip from subfactors
+        }
+        
+    subs.forEach(e => {factors.push(e)} );  //and push the newly discovered factors onto the known factors list
+    }
+
+var product = 1;
+for (i=0;i<factors.length;i++) {
+    product *= factors[i];
 }
-produceAnswer();
+
+var t1 = performance.now();
+
+return 'Least Common Multiple is '+product+' and the execution time of the algorithm is '+(t1-t0)+' seconds.';
+}
+
 
 function showAnswerDiv() {answerDiv.innerHTML = produceAnswer();answerDiv.style.display = 'block';}
 

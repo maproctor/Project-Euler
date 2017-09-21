@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><title>Project Euler 5</title></head>
+
+<body style="background:gray">By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.<br><br>
+
+What is the 10 001st (x = 10001) prime number?<br><br>
+
+<input type="text" id="input" placeholder = "x">
+<button onclick="showAnswerDiv()">Activate Script</button> <br><br>
+<div id="answerDiv" style="display:none">Answer Div</div>
+
+<script>
+var answerDiv = document.getElementById('answerDiv');
+
+var primes = [2]; 
+
+function produceAnswer (nthPrime) {
+
+    for (i = 2; primes.length<=nthPrime ; ) {   //keep running until the prime array is desired x length
+    for (var checkPosition=2; checkPosition <= (primes[primes.length-1]/2) ; ) {
+        if (i % primes[checkPosition] == 0) {i++;break}
+        else {checkPosition++; continue;}
+    }
+    if ( checkPosition == primes[primes.length-1] ) {primes.push(i);i++   }
+    }
+}
+
+function showAnswerDiv() {
+   answerDiv.innerHTML = produceAnswer(document.getElementById('input').value);
+   answerDiv.style.display = 'block';
+   }
+
+</script>
+
+</body>
+</html>

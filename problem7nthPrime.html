@@ -11,17 +11,26 @@ What is the 10 001st (x = 10001) prime number?<br><br>
 <script>
 var answerDiv = document.getElementById('answerDiv');
 
-var primes = [2]; 
-
 function produceAnswer (nthPrime) {
-
-    for (i = 2; primes.length<=nthPrime ; ) {   //keep running until the prime array is desired x length
-    for (var checkPosition=2; checkPosition <= (primes[primes.length-1]/2) ; ) {
-        if (i % primes[checkPosition] == 0) {i++;break}
-        else {checkPosition++; continue;}
+var primes = [2];
+    for (var numberToFactor = 3; primes.length<nthPrime ; ) {   
+    //keep running until the prime array is desired x length
+        //check for subfactors from the list, if they exist then increase i
+        for (var possibleFactorIndex=0;possibleFactorIndex <= primes.length-1; ) {
+            //two break conditions, either we find it has a factor
+            if (numberToFactor%primes[possibleFactorIndex]==0) { // divisible
+                numberToFactor+=2;break}  
+            //or we find we've exhausted the search list
+            if (possibleFactorIndex==primes.length-1) { // not in list
+            	primes.push(numberToFactor);
+            	numberToFactor+=2;
+            	break
+            }
+            else possibleFactorIndex++
+        }
+        
     }
-    if ( checkPosition == primes[primes.length-1] ) {primes.push(i);i++   }
-    }
+    return primes[primes.length-1];
 }
 
 function showAnswerDiv() {

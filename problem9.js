@@ -6,18 +6,26 @@
 // There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 // Find the product abc.
 
-for (r=2;r<1000;r++) {
+for (r=2;r<1000;r+=2) {  
+    //use r to iterate via Dickson's Method for finding ALL Pythagorean Triplets
     let rSquaredOverTwo = r*r/2;
-    for (s = 1, t = r*r/2; s <= t; s++,t=r*r/2/s) {
-        if (rSquaredOverTwo%s==0) {  //if it's a factor
+    for (s = 1, t = r*r/2; s <= t; s++,t=r*r/2/s) {  
+        //for each r, define Dickson's s and t
+        if (rSquaredOverTwo%s==0) {  
+            //for every s, if s is a factor
 
-            //if it adds up to a thousand
-            if (r+s + r+t + r+s+t == 1000) {console.log( (r+s)*(r+t)*(r+s+t) )
+            if (r+s + r+t + r+s+t == 1000) {
+                //check to see if r s and t then add up to a thousand
+            a=r+s;  
+            b=r+t;
+            c=r+s+t;
+            //a human readable output, perhaps overly verbose
+            console.log('Project Euler Problem 9 answer = '+a*b*c);
+            console.log ('r,s,t = '+r+' '+s+' '+t);
+            console.log ('a,b,c = '+a+' '+b+' '+c);
             }
         }
     }
 }
 
-
-console.log('test')
-process.exit();
+process.exit(); //for node.js environment

@@ -15,7 +15,7 @@ for (r=2;/*forever*/;r+=2) {
         //for each r, define Dickson's s and t
         if (rSquaredOverTwo%s==0) {  
             //for every s, if s is a factor
-
+            console.log ('r,s,t = '+r+' '+s+' '+t);
             if (r+s + r+t + r+s+t == 1000) {
                 //check to see if r s and t then add up to a thousand
             a=r+s;  

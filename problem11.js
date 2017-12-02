@@ -25,17 +25,36 @@ squareAsString = `
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 `;
-
+//turn this into something manageable
 var bigArray = squareAsString.split(' ').join().split('\n').join().slice(1,-1).split(',');
 
 for (i=0, j=0, array2D = []; j<20; i+=20,j++) {
     array2D[j] = bigArray.slice(i,i+20);
 }
-//TODO
-//outer loop iterates over each entry
-//inner loop checks right, down, downright
+//now it's 20 arrays of 20 numbers
 
-console.log(array2D);
+var workingProduct = 1;
+
+function checkDown (i,j) {
+ return bigArray[i[j]];
+}
+
+function checkright (i,j) {
+    return 2
+}
+
+function checkDiagonal (i,j) {
+    return 3
+}
+
+for (var i=0, j=0; i<=19 || j <=19;) {
+    workingProduct = Math.max(checkDown(i,j),checkright(i,j),checkDiagonal(i,j),workingProduct);
+    j < 19 ? j++ : (i < 19) ? ((i++), (j=0)) : ((i=20),(j=20));
+    //practicing ternary operator for conditional control of 'for'
+}
+
+
+console.log(workingProduct)
 
 
 process.exit();

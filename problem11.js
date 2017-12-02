@@ -31,14 +31,14 @@ var bigArray = squareAsString.split(' ').join().split('\n').join().slice(1,-1).s
 for (i=0, j=0, array2D = []; j<20; i+=20,j++) {
     array2D[j] = bigArray.slice(i,i+20);
 }
-//now it's 20 arrays of 20 numbers
-
-var workingProduct = 1;
+//array2D is 20 arrays of 20 numbers
 
 function checkDown (i,j) {
- return bigArray[i[j]];
+     return array2D[i+3][j] == 'undefined'
+    let prod = array2D[i][j]*array2D[i+1][j]*array2D[i+2][j]*array2D[i+3][j];
+    return (prod == 'undefined') ? 1 : prod;
 }
-
+//if array2D[i+3][j] is not defined, need to skip it somehow, for example at the bottom of the matrix
 function checkright (i,j) {
     return 2
 }
@@ -47,11 +47,15 @@ function checkDiagonal (i,j) {
     return 3
 }
 
-for (var i=0, j=0; i<=19 || j <=19;) {
-    workingProduct = Math.max(checkDown(i,j),checkright(i,j),checkDiagonal(i,j),workingProduct);
-    j < 19 ? j++ : (i < 19) ? ((i++), (j=0)) : ((i=20),(j=20));
-    //practicing ternary operator for conditional control of 'for'
-}
+
+
+for (var i=0, j=0, workingProduct=1;
+        i<=19 || j <=19;
+        j < 19 ? j++ : (i < 19) ? ((i++), (j=0)) : ((i=20),(j=20))
+    )
+        {
+        workingProduct = Math.max(checkDown(i,j),checkright(i,j),checkDiagonal(i,j),workingProduct);
+        }
 
 
 console.log(workingProduct)

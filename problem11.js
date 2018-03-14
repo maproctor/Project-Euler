@@ -37,13 +37,22 @@ function checkDown (i,j) {
     return i > 16 ? (1) : array2D[i][j] * array2D[i+1][j] * array2D[i+2][j] * array2D[i+3][j]; 
     }
 
-function checkright (i,j) {
+function checkRight (i,j) {
     return j > 16 ? (1) : array2D[i][j] * array2D[i][j+1] * array2D[i][j+2] * array2D[i][j+3];
     }
 
-function checkDiagonal (i,j) {
+function checkDiagonalDown (i,j) {
     return (j > 16 || i >16) ? (1) : array2D[i][j] * array2D[i+1][j+1] * array2D[i+2][j+2] * array2D[i+3][j+3];
     }
+
+function checkDiagonalUp (i,j) {
+    try {
+        return (i < 3 || j < 3 || i > 16 || j > 16) ? (1) : array2D[i][j] * array2D[i-1][j+1] * array2D[i-2][j+2] * array2D[i-3][j+3];
+    }
+    catch (error) {
+        console.log(error.message)
+    }
+}
 
 
 
@@ -52,7 +61,12 @@ for (var i=0, j=0, workingProduct=1;
         j < 19 ? j++ : (i < 19) ? ((i++), (j=0)) : ((i=20),(j=20))
     )
         {
-        workingProduct = Math.max(checkDown(i,j),checkright(i,j),checkDiagonal(i,j),workingProduct);
+        workingProduct = Math.max(
+            checkDown(i,j),
+            checkRight(i,j),
+            checkDiagonalDown(i,j),
+            checkDiagonalUp(i,j),
+            workingProduct);
         }
 
 console.log(workingProduct)

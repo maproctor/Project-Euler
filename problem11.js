@@ -34,9 +34,9 @@ for (i=0, j=0, array2D = []; j<20; i+=20,j++) {
 //array2D is 20 arrays of 20 numbers
 
 function checkDown (i,j) {
-     return array2D[i+3][j] == 'undefined'
+    if (array2D[i+3] == 'undefined') return 1;
     let prod = array2D[i][j]*array2D[i+1][j]*array2D[i+2][j]*array2D[i+3][j];
-    return (prod == 'undefined') ? 1 : prod;
+    return prod;
 }
 function checkright (i,j) {
     return 2
@@ -55,7 +55,6 @@ for (var i=0, j=0, workingProduct=1;
         {
         workingProduct = Math.max(checkDown(i,j),checkright(i,j),checkDiagonal(i,j),workingProduct);
         }
-
 
 console.log(workingProduct)
 

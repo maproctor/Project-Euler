@@ -34,17 +34,16 @@ for (i=0, j=0, array2D = []; j<20; i+=20,j++) {
 //array2D is 20 arrays of 20 numbers
 
 function checkDown (i,j) {
-    if (array2D[i+3] == 'undefined') return 1;
-    let prod = array2D[i][j]*array2D[i+1][j]*array2D[i+2][j]*array2D[i+3][j];
-    return prod;
-}
+    return i > 16 ? (1) : array2D[i][j] * array2D[i+1][j] * array2D[i+2][j] * array2D[i+3][j]; 
+    }
+
 function checkright (i,j) {
-    return 2
-}
+    return j > 16 ? (1) : array2D[i][j] * array2D[i][j+1] * array2D[i][j+2] * array2D[i][j+3];
+    }
 
 function checkDiagonal (i,j) {
-    return 3
-}
+    return (j > 16 || i >16) ? (1) : array2D[i][j] * array2D[i+1][j+1] * array2D[i+2][j+2] * array2D[i+3][j+3];
+    }
 
 
 

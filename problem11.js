@@ -38,7 +38,6 @@ function checkDown (i,j) {
     let prod = array2D[i][j]*array2D[i+1][j]*array2D[i+2][j]*array2D[i+3][j];
     return (prod == 'undefined') ? 1 : prod;
 }
-//if array2D[i+3][j] is not defined, need to skip it somehow, for example at the bottom of the matrix
 function checkright (i,j) {
     return 2
 }
